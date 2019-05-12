@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.bakingapp.api.ApiClient;
 import com.example.bakingapp.api.ApiInterface;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private CakeAdapter adapter;
+    private CakeAdapter cakeAdapter;
     private ProgressBar loadingBar;
 
     @Override
@@ -33,21 +34,22 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager
                 = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new CakeAdapter();
-        recyclerView.setAdapter(adapter);
+        cakeAdapter = new CakeAdapter();
+        recyclerView.setAdapter(cakeAdapter);
         ApiInterface mInterface= ApiClient.getClient().create(ApiInterface.class);
 
             mInterface.getCakes().enqueue(new Callback<List<Cakes>>() {
                 @Override
                 public void onResponse(Call<List<Cakes>> call, Response<List<Cakes>> response) {
+                    cakeAdapter.setCakeData(response.body());
                     loadingBar.setVisibility(View.GONE);
-                    adapter.setCakeData(response.body());
                 }
 
                 @Override
                 public void onFailure(Call<List<Cakes>> call, Throwable t) {
                     loadingBar.setVisibility(View.GONE);
                     t.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Something went wrong, check the logs", Toast.LENGTH_SHORT).show();
                 }
             });
     }

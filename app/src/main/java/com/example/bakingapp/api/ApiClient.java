@@ -1,6 +1,7 @@
 package com.example.bakingapp.api;
 
 import com.example.bakingapp.models.Cakes;
+import com.example.bakingapp.models.Ingredient;
 
 import java.util.List;
 
@@ -29,5 +30,6 @@ public class ApiClient {
   private interface CakeService{
         @GET("topher/2017/May/59121517_baking/baking.json")
       Call<List<Cakes>> getCakes(@Path("json") String path);
-  }
+        Call<List<Ingredient>> getIngredient(@Path("json")String path);
+    }
 }
