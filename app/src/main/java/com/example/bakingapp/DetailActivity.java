@@ -21,25 +21,32 @@ import com.example.bakingapp.models.Ingredient;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
-    private TextView cakeNameText;
     private ImageView cakeImage;
-
+    //@BindView(R.id.cakeNameText)
+    private TextView cakeNameText;
+   // @BindView(R.id.cakeServingsText)
+   // private TextView cakeServingsText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        //ButterKnife.bind(this);
         cakeNameText = (TextView) findViewById(R.id.cakeNameText);
         cakeImage = (ImageView) findViewById(R.id.cakeImage);
+        //cakeServingsText=(TextView) findViewById(R.id.cakeServingsText);
 
         if (getIntent().getExtras() == null) {
             Toast.makeText(this, "Something went wrong, check the logs", Toast.LENGTH_LONG).show();
         } else {
             String cakeImage = getIntent().getExtras().getString(IntentConstants.CAKE_IMAGE);
             String cakeName = getIntent().getExtras().getString(IntentConstants.CAKE_NAME);
+           // Integer cakeServings= getIntent().getExtras().getInt(IntentConstants.CAKE_SERVINGS);
             cakeNameText.setText(cakeName);
+          //  cakeServingsText.setText(String.valueOf(cakeServings));
 
 
         }

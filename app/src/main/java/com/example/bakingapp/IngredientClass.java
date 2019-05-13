@@ -21,9 +21,9 @@ public class IngredientClass extends AppCompatActivity {
     private IngredientAdapter ingredientAdapter;
     private ProgressBar ingredientLoadingBar;
     @BindView(R.id.ingredientText)
-    TextView ingredientText;
+    private TextView ingredientText;
     @BindView(R.id.measureText)
-    TextView measureText;
+    private TextView measureText;
     @BindView(R.id.quantityText)
     TextView quantityText;
 
@@ -50,9 +50,7 @@ public class IngredientClass extends AppCompatActivity {
             quantityText.setText(String.valueOf(quantity));
             measureText.setText(measure);
             ingredientText.setText(ingredient);
-
         }
-
 
     }
 }

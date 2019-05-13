@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 
 import com.example.bakingapp.models.Cakes;
-import com.example.bakingapp.models.Ingredient;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,6 +34,7 @@ public class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.AdapterHolder>
     @Override
     public void onBindViewHolder(@NonNull AdapterHolder adapterHolder, int i) {
         adapterHolder.bind(data.get(i).image);
+        //adapterHolder.bind(data.get(i).name);
     }
 
     @Override
@@ -50,11 +50,12 @@ public class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.AdapterHolder>
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                 Intent shareIntent = new Intent(itemView.getContext(), DetailActivity.class);
-                 Cakes cakes=data.get(getAdapterPosition());
-                 shareIntent.putExtra(IntentConstants.CAKE_IMAGE,cakes.image);
-                 shareIntent.putExtra(IntentConstants.CAKE_NAME, cakes.name);
-                 itemView.getContext().startActivity(shareIntent);
+                    Intent shareIntent = new Intent(itemView.getContext(), DetailActivity.class);
+                    Cakes cakes = data.get(getAdapterPosition());
+                    shareIntent.putExtra(IntentConstants.CAKE_IMAGE, cakes.image);
+                    shareIntent.putExtra(IntentConstants.CAKE_NAME, cakes.name);
+                    //shareIntent.putExtra(IntentConstants.CAKE_SERVINGS,cakes.servings);
+                    itemView.getContext().startActivity(shareIntent);
 
                 }
             });
@@ -65,7 +66,9 @@ public class CakeAdapter extends RecyclerView.Adapter<CakeAdapter.AdapterHolder>
             if (!TextUtils.isEmpty(cakeImage)) {
                 cakeView = itemView.findViewById(R.id.cakeImage);
                 Picasso.get().load("https://d17h27t6h515a5.cloudfront.net" + cakeImage).fit().centerCrop().into(cakeView);
+                //cakeView = itemView.findViewById(R.id.cakeNameText);
             }
+
         }
     }
 
