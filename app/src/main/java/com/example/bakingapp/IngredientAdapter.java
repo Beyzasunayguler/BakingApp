@@ -28,6 +28,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Ad
 
     @Override
     public void onBindViewHolder(@NonNull AdapterHolder adapterHolder, int i) {
+        //adapterHolder.itemView(ingredients.get(i).ingredient);
+        //adapterHolder.itemView(ingredients.get(i).measure);
+       // adapterHolder.itemView(ingredients.get(i).quantity);
 
     }
 
@@ -51,5 +54,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.Ad
                 }
             });
         }
+
     }
 }
