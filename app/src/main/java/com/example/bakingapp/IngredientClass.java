@@ -49,7 +49,7 @@ public class IngredientClass extends AppCompatActivity {
             Double quantity = getIntent().getExtras().getDouble(IntentConstants.INGREDIENT_QUANTITY);
             quantityText.setText(String.valueOf(quantity));
             measureText.setText(measure);
-            ingredientText.setText(ingredient); 
+            ingredientText.setText(ingredient);
         }
 
     }

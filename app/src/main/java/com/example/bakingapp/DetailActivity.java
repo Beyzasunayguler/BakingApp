@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,10 +27,9 @@ import butterknife.ButterKnife;
 
 public class DetailActivity extends AppCompatActivity {
     private ImageView cakeImage;
-    //@BindView(R.id.cakeNameText)
     private TextView cakeNameText;
-   // @BindView(R.id.cakeServingsText)
-   // private TextView cakeServingsText;
+    private Button ingredientButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,6 +38,14 @@ public class DetailActivity extends AppCompatActivity {
         //ButterKnife.bind(this);
         cakeNameText = (TextView) findViewById(R.id.cakeNameText);
         cakeImage = (ImageView) findViewById(R.id.cakeImage);
+        ingredientButton=(Button) findViewById(R.id.ingredientButton);
+        ingredientButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), IngredientClass.class);
+                startActivity(intent);
+            }
+        });
         //cakeServingsText=(TextView) findViewById(R.id.cakeServingsText);
 
         if (getIntent().getExtras() == null) {
@@ -51,20 +60,5 @@ public class DetailActivity extends AppCompatActivity {
 
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.add_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        Intent intent = new Intent(getApplicationContext(), IngredientClass.class);
-        startActivity(intent);
-
-        return true;
     }
 }
